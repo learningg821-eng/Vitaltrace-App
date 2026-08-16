@@ -2,17 +2,14 @@ import { initializeApp } from 'firebase/app'
 import { getMessaging } from 'firebase/messaging'
 
 const firebaseConfig = {
-  apiKey: 'AIzaSyCGMJBwoCSvNeXzg0x_I1ZCbRs18n0tzA0',
-  authDomain: 'vitaltrace-489dc.firebaseapp.com',
-  projectId: 'vitaltrace-489dc',
-  storageBucket: 'vitaltrace-489dc.firebasestorage.app',
-  messagingSenderId: '776543917158',
-  appId: '1:776543917158:web:cb88341bdb23576a3549a7',
+  apiKey: import.meta.env.VITE_FIREBASE_API_KEY,
+  authDomain: import.meta.env.VITE_FIREBASE_AUTH_DOMAIN,
+  projectId: import.meta.env.VITE_FIREBASE_PROJECT_ID,
+  storageBucket: import.meta.env.VITE_FIREBASE_STORAGE_BUCKET,
+  messagingSenderId: import.meta.env.VITE_FIREBASE_MESSAGING_SENDER_ID,
+  appId: import.meta.env.VITE_FIREBASE_APP_ID,
 }
 
 const app = initializeApp(firebaseConfig)
-
 export const messaging = getMessaging(app)
-
-export const vapidKey =
-  'BDFBJDZBZlE_BqBr01TmXmZqNkl5Lq8_3giajKqL2kWn9xQmUDqBNzOS4M4irwkKOFBoQ1W86oXhpNL8RfZo59c'
+export const vapidKey = import.meta.env.VITE_FIREBASE_VAPID_KEY
