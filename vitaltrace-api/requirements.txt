@@ -1,0 +1,13 @@
+fastapi
+uvicorn
+python-dotenv
+sqlalchemy
+pydantic
+pydantic-settings
+python-jose
+passlib
+bcrypt
+firebase-admin
+httpx
+python-multipart
+groq
