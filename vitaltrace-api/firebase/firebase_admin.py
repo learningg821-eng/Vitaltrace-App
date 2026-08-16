@@ -1,13 +1,17 @@
+import os
+import json
 import firebase_admin
 from firebase_admin import credentials, messaging
 
-
-SERVICE_ACCOUNT_FILE = "firebase/service-account.json"
-
-
 if not firebase_admin._apps:
-    cred = credentials.Certificate(SERVICE_ACCOUNT_FILE)
-
+    service_account_json = os.getenv("FIREBASE_SERVICE_ACCOUNT")
+    
+    if service_account_json:
+        service_account_info = json.loads(service_account_json)
+        cred = credentials.Certificate(service_account_info)
+    else:
+        cred = credentials.Certificate("firebase/service-account.json")
+    
     firebase_admin.initialize_app(cred)
 
 def send_fcm_notification(
@@ -24,6 +28,4 @@ def send_fcm_notification(
         data=data or {},
         token=fcm_token,
     )
-
-    response = messaging.send(message)
-    return response
+    return messaging.send(message)
